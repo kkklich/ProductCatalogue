@@ -1,4 +1,4 @@
-//@import '../../styles/variables.scss';
+@use '../../../styles/variables' as vars;
 
 .dashboard-container {
     padding: 24px;
@@ -29,12 +29,13 @@
         border-radius: 8px;
         font-weight: 500;
         letter-spacing: 0.5px;
-        //box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+
+        box-shadow: 0 4px 12px rgba(vars.$primary-color, 0.3);
         transition: transform 0.2s ease, box-shadow 0.2s ease;
 
         &:hover {
             transform: translateY(-2px);
-            // box-shadow: 0 6px 16px rgba($primary-color, 0.4);
+            box-shadow: 0 6px 16px rgba(vars.$primary-color, 0.4);
         }
     }
 }
@@ -43,7 +44,6 @@
     background: white;
     border-radius: 12px;
     overflow: hidden;
-    /* Keeps rounded corners for the table inside */
     border: 1px solid rgba(0, 0, 0, 0.05);
 
     .table-wrapper {
@@ -81,7 +81,7 @@
 
     .price-cell {
         font-weight: 500;
-        // color: $primary-color;
+        color: vars.$primary-color;
     }
 
     .actions-header,
@@ -98,13 +98,13 @@
         }
 
         &.edit-btn:hover {
-            //color: $primary-color;
-            // background-color: rgba($primary-color, 0.1);
+            color: vars.$primary-color;
+            background-color: rgba(vars.$primary-color, 0.1);
         }
 
         &.delete-btn:hover {
-            // color: $danger-color;
-            // background-color: rgba($danger-color, 0.1);
+            color: vars.$danger-color;
+            background-color: rgba(vars.$danger-color, 0.1);
         }
     }
 }

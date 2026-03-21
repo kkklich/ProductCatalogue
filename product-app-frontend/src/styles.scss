@@ -1,6 +1,5 @@
-// src/styles.scss//
-//@import './styles/variables.scss';
-@import '@angular/material/prebuilt-themes/indigo-pink.css';
+@use './styles/variables.scss';
+@use '@angular/material/prebuilt-themes/indigo-pink.css';
 
 html,
 body {
