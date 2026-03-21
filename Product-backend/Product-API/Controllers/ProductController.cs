@@ -14,7 +14,7 @@ namespace Product_API.Controllers
         {
             _repository = repository;
         }
-        // GET: api/products?search=fraza&pageIndex=0&pageSize=5
+        // GET: api/product?search=fraza&pageIndex=0&pageSize=5
         [HttpGet]
         public IActionResult GetProducts([FromQuery] string? search, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 5)
         {
