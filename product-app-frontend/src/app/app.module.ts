@@ -17,6 +17,7 @@ import { MatTableModule } from '@angular/material/table';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatIconModule } from '@angular/material/icon';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatSortModule } from '@angular/material/sort';
 
 
 @NgModule({
@@ -40,6 +41,7 @@ import { MatProgressBarModule } from '@angular/material/progress-bar';
         MatPaginatorModule,
         MatIconModule,
         MatProgressBarModule,
+        MatSortModule,
         RouterModule.forRoot(routes)
     ],
     exports: [RouterModule],

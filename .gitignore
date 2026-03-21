@@ -47,6 +47,8 @@ Thumbs.db
 .env.local
 .env.*.local
 
+product-app-frontend/src/environments/environment*.ts
+
 # =========================
 
 # .NET / ASP.NET Core

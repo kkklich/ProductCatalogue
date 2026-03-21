@@ -16,9 +16,14 @@ namespace Product_API.Controllers
         }
         // GET: api/product?search=fraza&pageIndex=0&pageSize=5
         [HttpGet]
-        public IActionResult GetProducts([FromQuery] string? search, [FromQuery] int pageIndex = 0, [FromQuery] int pageSize = 5)
+        public IActionResult GetProducts(
+    [FromQuery] string? search,
+    [FromQuery] int pageIndex = 0,
+    [FromQuery] int pageSize = 5,
+    [FromQuery] string? sortBy = null,
+    [FromQuery] string? sortDirection = null)
         {
-            var result = _repository.GetPaged(search, pageIndex, pageSize);
+            var result = _repository.GetPaged(search, pageIndex, pageSize, sortBy, sortDirection);
             return Ok(result);
         }
 

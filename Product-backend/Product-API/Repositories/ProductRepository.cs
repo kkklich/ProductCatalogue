@@ -6,10 +6,12 @@ namespace Product_API.Repositories
     {
         private readonly List<Product> _products = new();
 
-        public PagedResult<Product> GetPaged(string? searchTerm, int pageIndex, int pageSize)
+        // Repositories/ProductRepository.cs
+        public PagedResult<Product> GetPaged(string? searchTerm, int pageIndex, int pageSize, string? sortBy, string? sortDirection)
         {
             var query = _products.AsEnumerable();
 
+            // 1. Filtrowanie (Search)
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
                 searchTerm = searchTerm.ToLower();
@@ -18,9 +20,27 @@ namespace Product_API.Repositories
                     p.Code.ToLower().Contains(searchTerm));
             }
 
-            int totalCount = query.Count();
+            // 2. Sortowanie
+            if (!string.IsNullOrWhiteSpace(sortBy))
+            {
+                bool isDesc = sortDirection?.ToLower() == "desc";
 
-            // Apply pagination
+                query = sortBy.ToLower() switch
+                {
+                    "code" => isDesc ? query.OrderByDescending(p => p.Code) : query.OrderBy(p => p.Code),
+                    "name" => isDesc ? query.OrderByDescending(p => p.Name) : query.OrderBy(p => p.Name),
+                    "price" => isDesc ? query.OrderByDescending(p => p.Price) : query.OrderBy(p => p.Price),
+                    _ => query.OrderBy(p => p.Id)
+                };
+            }
+            else
+            {
+                // Domyślne zachowanie, jeśli nie wybrano kolumny
+                query = query.OrderBy(p => p.Id);
+            }
+
+            // 3. Obliczenie całkowitej liczby i Paginacja
+            int totalCount = query.Count();
             var items = query.Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
             return new PagedResult<Product>

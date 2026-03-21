@@ -13,16 +13,21 @@ export class ProductService {
 
   constructor(private http: HttpClient) { }
 
+  getProducts(
+    searchTerm: string = '',
+    pageIndex: number = 0,
+    pageSize: number = 5,
+    sortBy: string = '',
+    sortDirection: string = ''
+  ): Observable<PagedResult<Product>> {
 
-
-  getProducts(searchTerm: string = '', pageIndex: number = 0, pageSize: number = 5): Observable<PagedResult<Product>> {
     let params = new HttpParams()
       .set('pageIndex', pageIndex.toString())
       .set('pageSize', pageSize.toString());
 
-    if (searchTerm) {
-      params = params.set('search', searchTerm);
-    }
+    if (searchTerm) params = params.set('search', searchTerm);
+    if (sortBy) params = params.set('sortBy', sortBy);
+    if (sortDirection) params = params.set('sortDirection', sortDirection);
 
     return this.http.get<PagedResult<Product>>(this.apiUrl, { params });
   }
