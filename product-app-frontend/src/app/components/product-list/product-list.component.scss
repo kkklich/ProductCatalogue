@@ -1,0 +1,144 @@
+//@import '../../styles/variables.scss';
+
+.dashboard-container {
+    padding: 24px;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.dashboard-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+    gap: 16px;
+    flex-wrap: wrap;
+
+    .search-field {
+        width: 100%;
+        max-width: 450px;
+
+        /* Slight adjustment to make Material form fields less tall */
+        ::ng-deep .mat-mdc-text-field-wrapper {
+            background-color: white;
+        }
+    }
+
+    .add-button {
+        padding: 24px 24px;
+        border-radius: 8px;
+        font-weight: 500;
+        letter-spacing: 0.5px;
+        //box-shadow: 0 4px 12px rgba($primary-color, 0.3);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+        &:hover {
+            transform: translateY(-2px);
+            // box-shadow: 0 6px 16px rgba($primary-color, 0.4);
+        }
+    }
+}
+
+.table-card {
+    background: white;
+    border-radius: 12px;
+    overflow: hidden;
+    /* Keeps rounded corners for the table inside */
+    border: 1px solid rgba(0, 0, 0, 0.05);
+
+    .table-wrapper {
+        overflow-x: auto;
+    }
+}
+
+.product-table {
+    width: 100%;
+
+    th {
+        text-transform: uppercase;
+        font-size: 12px;
+        font-weight: 600;
+        color: #666;
+        background-color: #fafafa;
+        padding: 16px 24px;
+        letter-spacing: 0.5px;
+    }
+
+    td {
+        padding: 16px 24px;
+        color: #333;
+        font-size: 14px;
+        border-bottom: 1px solid #f0f0f0;
+    }
+
+    .product-row {
+        transition: background-color 0.2s ease;
+
+        &:hover {
+            background-color: #fcfcfc;
+        }
+    }
+
+    .price-cell {
+        font-weight: 500;
+        // color: $primary-color;
+    }
+
+    .actions-header,
+    .actions-cell {
+        text-align: right;
+    }
+
+    .action-btn {
+        opacity: 0.7;
+        transition: opacity 0.2s, background-color 0.2s;
+
+        &:hover {
+            opacity: 1;
+        }
+
+        &.edit-btn:hover {
+            //color: $primary-color;
+            // background-color: rgba($primary-color, 0.1);
+        }
+
+        &.delete-btn:hover {
+            // color: $danger-color;
+            // background-color: rgba($danger-color, 0.1);
+        }
+    }
+}
+
+.empty-state {
+    text-align: center;
+    padding: 60px 20px;
+    color: #888;
+
+    .empty-icon {
+        font-size: 48px;
+        width: 48px;
+        height: 48px;
+        margin-bottom: 16px;
+        color: #ccc;
+    }
+
+    p {
+        margin: 0;
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 600px) {
+    .dashboard-header {
+        flex-direction: column;
+        align-items: stretch;
+
+        .search-field {
+            max-width: 100%;
+        }
+
+        .add-button {
+            width: 100%;
+        }
+    }
+}

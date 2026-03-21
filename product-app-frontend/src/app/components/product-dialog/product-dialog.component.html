@@ -1,0 +1,29 @@
+<h2 mat-dialog-title>{{ isEditMode ? 'Edit Product' : 'Add New Product' }}</h2>
+
+<mat-dialog-content>
+    <form [formGroup]="productForm" id="productForm" (ngSubmit)="onSubmit()" class="dialog-form">
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Code</mat-label>
+            <input matInput formControlName="code" placeholder="Enter product code">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Name</mat-label>
+            <input matInput formControlName="name" placeholder="Enter product name">
+        </mat-form-field>
+
+        <mat-form-field appearance="outline" class="full-width">
+            <mat-label>Price (PLN)</mat-label>
+            <input matInput type="number" step="0.01" formControlName="price" placeholder="Enter price">
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions align="end">
+    <button mat-button type="button" (click)="closeModal()">Cancel</button>
+    <button mat-flat-button color="primary" type="submit" form="productForm" [disabled]="productForm.invalid">
+        {{ isEditMode ? 'Update' : 'Save' }}
+    </button>
+</mat-dialog-actions>

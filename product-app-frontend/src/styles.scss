@@ -1,0 +1,15 @@
+// src/styles.scss//
+//@import './styles/variables.scss';
+@import '@angular/material/prebuilt-themes/indigo-pink.css';
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  background-color: #f4f7f6;
+  /* Modern dashboard background color */
+}
