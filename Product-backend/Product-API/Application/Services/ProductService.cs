@@ -1,10 +1,10 @@
 ﻿using AutoMapper;
+using Product_API.Application.DTOs;
 using Product_API.Domain.Common;
 using Product_API.Domain.Entities;
-using Product_API.DTOs;
-using Product_API.Interfaces;
+using Product_API.Infrastructure.Repositories;
 
-namespace ProductCatalogApi.Services
+namespace Product_API.Application.Services
 {
     public class ProductService : IProductService
     {

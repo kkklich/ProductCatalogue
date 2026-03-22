@@ -1,8 +1,8 @@
 ﻿using AutoMapper;
+using Product_API.Application.DTOs;
 using Product_API.Domain.Entities;
-using Product_API.DTOs;
 
-namespace Product_API.Mappings
+namespace Product_API.Application.Mappings
 {
     public class MappingProfile: Profile
     {

@@ -1,6 +1,6 @@
-﻿namespace Product_API.DTOs
+﻿namespace Product_API.Application.DTOs
 {
-    public class UpdateProductDto
+    public class CreateProductDto
     {
         public string Code { get; set; }
         public string Name { get; set; }

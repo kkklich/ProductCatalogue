@@ -1,8 +1,7 @@
-using Product_API.Interfaces;
-using Product_API.Mappings;
+using Product_API.Application.Mappings;
+using Product_API.Application.Services;
+using Product_API.Infrastructure.Repositories;
 using Product_API.Middlewares;
-using ProductCatalogApi.Repositories;
-using ProductCatalogApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 

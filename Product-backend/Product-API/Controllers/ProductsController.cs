@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Product_API.DTOs;
-using Product_API.Interfaces;
-using ProductCatalogApi.Services;
+using Product_API.Application.DTOs;
+using Product_API.Application.Services;
 
 namespace Product_API.Controllers
 {

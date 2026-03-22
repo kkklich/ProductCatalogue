@@ -1,7 +1,7 @@
-﻿using Product_API.Domain.Common;
-using Product_API.DTOs;
+﻿using Product_API.Application.DTOs;
+using Product_API.Domain.Common;
 
-namespace Product_API.Interfaces
+namespace Product_API.Application.Services
 {
     public interface IProductService
     {

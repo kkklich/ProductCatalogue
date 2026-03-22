@@ -1,7 +1,7 @@
 ﻿using Product_API.Domain.Common;
 using Product_API.Domain.Entities;
 
-namespace Product_API.Interfaces
+namespace Product_API.Infrastructure.Repositories
 {
     public interface IProductRepository
     {
