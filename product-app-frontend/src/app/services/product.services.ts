@@ -1,15 +1,16 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { PagedResult, Product } from '../models/product.model';
+import { CreateProductRequest, Product, UpdateProductRequest } from '../models/product.model';
 import { environment } from '../../environments/environment';
 import { Observable } from 'rxjs';
+import { PagedResult } from '../models/page-result.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ProductService {
 
-  private apiUrl = environment.apiUrl + 'product';
+  private apiUrl = environment.apiUrl + 'products';
 
   constructor(private http: HttpClient) { }
 
@@ -32,11 +33,11 @@ export class ProductService {
     return this.http.get<PagedResult<Product>>(this.apiUrl, { params });
   }
 
-  addProduct(product: Product): Observable<Product> {
+  addProduct(product: CreateProductRequest): Observable<Product> {
     return this.http.post<Product>(this.apiUrl, product);
   }
 
-  updateProduct(id: string, product: Product): Observable<void> {
+  updateProduct(id: string, product: UpdateProductRequest): Observable<void> {
     return this.http.put<void>(`${this.apiUrl}/${id}`, product);
   }
 

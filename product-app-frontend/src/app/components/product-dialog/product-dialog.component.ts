@@ -1,7 +1,7 @@
 import { Component, Inject, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
-import { Product } from '../../models/product.model';
+import { Product, CreateProductRequest } from '../../models/product.model';
 
 @Component({
   selector: 'app-product-dialog',
@@ -10,8 +10,8 @@ import { Product } from '../../models/product.model';
   styleUrls: ['./product-dialog.component.scss']
 })
 export class ProductDialogComponent implements OnInit {
-
   isEditMode: boolean = false;
+  private editProductId?: string;
 
   productForm = new FormGroup({
     code: new FormControl('', [Validators.required, Validators.minLength(3)]),
@@ -27,6 +27,7 @@ export class ProductDialogComponent implements OnInit {
   ngOnInit(): void {
     if (this.data) {
       this.isEditMode = true;
+      this.editProductId = this.data.id;
       this.productForm.patchValue({
         code: this.data.code,
         name: this.data.name,
@@ -37,19 +38,22 @@ export class ProductDialogComponent implements OnInit {
 
   onSubmit() {
     if (this.productForm.valid) {
-      const productData: Product = {
-        id: this.isEditMode && this.data ? this.data.id : crypto.randomUUID(),
+
+      const productPayload: CreateProductRequest = {
         code: this.productForm.value.code!,
         name: this.productForm.value.name!,
         price: this.productForm.value.price!
       };
 
-      // We don't call the API here anymore. We just return the data!
-      this.dialogRef.close(productData);
+      if (this.isEditMode) {
+        this.dialogRef.close({ id: this.editProductId, payload: productPayload });
+      } else {
+        this.dialogRef.close({ payload: productPayload });
+      }
     }
   }
 
   closeModal() {
-    this.dialogRef.close(null); // Return null on cancel
+    this.dialogRef.close(null);
   }
 }

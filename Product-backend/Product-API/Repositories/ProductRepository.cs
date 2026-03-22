@@ -1,30 +1,25 @@
-﻿using Product_API.Models;
+﻿using Product_API.Interfaces;
+using Product_API.Models;
 
-namespace Product_API.Repositories
+namespace ProductCatalogApi.Repositories
 {
-    public class ProductRepository
+    public class ProductRepository : IProductRepository
     {
         private readonly List<Product> _products = new();
 
-        // Repositories/ProductRepository.cs
-        public PagedResult<Product> GetPaged(string? searchTerm, int pageIndex, int pageSize, string? sortBy, string? sortDirection)
+        public async Task<PagedResult<Product>> GetPagedAsync(string? searchTerm, int pageIndex, int pageSize, string? sortBy, string? sortDirection)
         {
             var query = _products.AsEnumerable();
 
-            // 1. Filtrowanie (Search)
             if (!string.IsNullOrWhiteSpace(searchTerm))
             {
                 searchTerm = searchTerm.ToLower();
-                query = query.Where(p =>
-                    p.Name.ToLower().Contains(searchTerm) ||
-                    p.Code.ToLower().Contains(searchTerm));
+                query = query.Where(p => p.Name.ToLower().Contains(searchTerm) || p.Code.ToLower().Contains(searchTerm));
             }
 
-            // 2. Sortowanie
             if (!string.IsNullOrWhiteSpace(sortBy))
             {
                 bool isDesc = sortDirection?.ToLower() == "desc";
-
                 query = sortBy.ToLower() switch
                 {
                     "code" => isDesc ? query.OrderByDescending(p => p.Code) : query.OrderBy(p => p.Code),
@@ -35,46 +30,39 @@ namespace Product_API.Repositories
             }
             else
             {
-                // Domyślne zachowanie, jeśli nie wybrano kolumny
                 query = query.OrderBy(p => p.Id);
             }
 
-            // 3. Obliczenie całkowitej liczby i Paginacja
             int totalCount = query.Count();
             var items = query.Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
-            return new PagedResult<Product>
-            {
-                Items = items,
-                TotalCount = totalCount
-            };
+            return await Task.FromResult(new PagedResult<Product> { Items = items, TotalCount = totalCount });
         }
 
-        public void Add(Product product)
-        {
-            _products.Add(product);
-        }
-
-        public bool Update(Guid id, Product updatedProduct)
-        {
-            var existing = _products.FirstOrDefault(p => p.Id == id);
-            if (existing == null) return false;
-
-            // Update properties
-            existing.Code = updatedProduct.Code;
-            existing.Name = updatedProduct.Name;
-            existing.Price = updatedProduct.Price;
-
-            return true;
-        }
-
-        public bool Delete(Guid id)
+        public async Task<Product?> GetByIdAsync(Guid id)
         {
             var product = _products.FirstOrDefault(p => p.Id == id);
-            if (product == null) return false;
+            return await Task.FromResult(product);
+        }
+
+        public async Task AddAsync(Product product)
+        {
+            _products.Add(product);
+            await Task.CompletedTask;
+        }
+
+        public async Task<bool> UpdateAsync(Product product)
+        {
+            return await Task.FromResult(true);
+        }
+
+        public async Task<bool> DeleteAsync(Guid id)
+        {
+            var product = _products.FirstOrDefault(p => p.Id == id);
+            if (product == null) return await Task.FromResult(false);
 
             _products.Remove(product);
-            return true;
+            return await Task.FromResult(true);
         }
     }
 }

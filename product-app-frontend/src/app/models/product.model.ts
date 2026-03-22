@@ -5,7 +5,14 @@ export interface Product {
   price: number;
 }
 
-export interface PagedResult<T> {
-  items: T[];
-  totalCount: number;
+export interface CreateProductRequest {
+  code: string;
+  name: string;
+  price: number;
+}
+
+export interface UpdateProductRequest {
+  code: string;
+  name: string;
+  price: number;
 }

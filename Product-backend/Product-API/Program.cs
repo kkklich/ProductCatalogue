@@ -1,13 +1,17 @@
-using Product_API.Repositories;
+using Product_API.Interfaces;
+using Product_API.Mappings;
+using ProductCatalogApi.Repositories;
+using ProductCatalogApi.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
-// Add services to the container.
-
 builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
 
-builder.Services.AddSingleton<ProductRepository>();
+builder.Services.AddAutoMapper(typeof(MappingProfile));
+
+builder.Services.AddSingleton<IProductRepository, ProductRepository>();
+builder.Services.AddScoped<IProductService, ProductService>();
+
 builder.Services.AddOpenApi();
 
 builder.Services.AddCors(options =>
@@ -29,8 +33,6 @@ if (app.Environment.IsDevelopment())
 {
     app.MapOpenApi();
 }
-
-
 
 app.UseHttpsRedirection();
 

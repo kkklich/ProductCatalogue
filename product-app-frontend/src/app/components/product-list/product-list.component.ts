@@ -54,7 +54,6 @@ export class ProductListComponent implements OnInit, OnDestroy {
       this.loadData$.pipe(
         tap(() => this.isLoading = true),
         switchMap(() =>
-          // ZAKTUALIZOWANE WYWOŁANIE: Przekazujemy sortBy i sortDirection
           this.productService.getProducts(this.searchQuery, this.pageIndex, this.pageSize, this.sortBy, this.sortDirection).pipe(
             finalize(() => this.isLoading = false),
             catchError(err => {
@@ -70,14 +69,12 @@ export class ProductListComponent implements OnInit, OnDestroy {
         }
       })
     );
-
-
   }
 
   onSortChange(sortState: Sort): void {
     this.sortBy = sortState.active;
-    this.sortDirection = sortState.direction; // 'asc', 'desc' lub '' (brak sortowania)
-    this.pageIndex = 0; // Po zmianie sortowania wracamy na pierwszą stronę
+    this.sortDirection = sortState.direction; // 'asc', 'desc' or '' 
+    this.pageIndex = 0; // after sorting, we want to go back to the first page
     this.loadProducts();
   }
 
@@ -110,19 +107,21 @@ export class ProductListComponent implements OnInit, OnDestroy {
       data: product
     });
 
-    dialogRef.afterClosed().subscribe((result: Product | null) => {
+    dialogRef.afterClosed().subscribe((result: { id?: string, payload: any } | null) => {
       if (result) {
-        if (product) {
+        if (this.isEditMode(result)) {
           // Edit Mode
-          if (result?.id) {
-            this.productService.updateProduct(result.id, result).subscribe(() => this.loadProducts());
-          }
+          this.productService.updateProduct(result.id, result.payload).subscribe(() => this.loadProducts());
         } else {
-          // Add Mode
-          this.productService.addProduct(result).subscribe(() => this.loadProducts());
+          // Add Mode 
+          this.productService.addProduct(result.payload).subscribe(() => this.loadProducts());
         }
       }
     });
+  }
+
+  private isEditMode(result: any): result is { id: string, payload: any } {
+    return result.id !== undefined;
   }
 
   deleteProduct(id: string): void {
