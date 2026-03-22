@@ -1,5 +1,5 @@
-﻿using Product_API.DTOs;
-using Product_API.Models;
+﻿using Product_API.Domain.Common;
+using Product_API.DTOs;
 
 namespace Product_API.Interfaces
 {

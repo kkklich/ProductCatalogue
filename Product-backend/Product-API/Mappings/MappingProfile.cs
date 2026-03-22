@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
+using Product_API.Domain.Entities;
 using Product_API.DTOs;
-using Product_API.Models;
 
 namespace Product_API.Mappings
 {

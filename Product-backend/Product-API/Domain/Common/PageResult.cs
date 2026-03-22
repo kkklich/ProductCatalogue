@@ -1,4 +1,4 @@
-﻿namespace Product_API.Models
+﻿namespace Product_API.Domain.Common
 {
     public class PagedResult<T>
     {

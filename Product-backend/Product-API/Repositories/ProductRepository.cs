@@ -1,5 +1,6 @@
-﻿using Product_API.Interfaces;
-using Product_API.Models;
+﻿using Product_API.Domain.Common;
+using Product_API.Domain.Entities;
+using Product_API.Interfaces;
 
 namespace ProductCatalogApi.Repositories
 {
