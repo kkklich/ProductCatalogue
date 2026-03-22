@@ -58,6 +58,9 @@
                         <mat-icon class="empty-icon">inventory_2</mat-icon>
                         <p>No products found.</p>
                     </td>
+                    <td *ngIf="isLoading">
+                        <p>Server is waking up. This may take up to 60 seconds... Loading...</p>
+                    </td>
                 </tr>
             </table>
         </div>
