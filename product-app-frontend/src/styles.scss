@@ -1,5 +1,6 @@
-@use './styles/variables.scss';
+@use './styles/variables' as vars;
 @use '@angular/material/prebuilt-themes/indigo-pink.css';
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700&display=swap');
 
 html,
 body {
@@ -8,7 +9,27 @@ body {
 
 body {
   margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-  background-color: #f4f7f6;
-  /* Modern dashboard background color */
+  font-family: 'Montserrat', sans-serif;
+  background-color: vars.$me-gray;
+  color: vars.$text-primary;
+}
+
+.mat-mdc-unelevated-button.mat-primary,
+.mat-mdc-raised-button.mat-primary,
+.mat-mdc-flat-button.mat-primary {
+  --mdc-filled-button-container-color: vars.$me-yellow !important;
+  --mdc-filled-button-label-text-color: vars.$me-black !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.5px;
+  border-radius: 4px !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__leading,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__notch,
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-notched-outline__trailing {
+  border-color: vars.$me-black !important;
+}
+
+.mdc-text-field--outlined:not(.mdc-text-field--disabled).mdc-text-field--focused .mdc-floating-label {
+  color: vars.$me-black !important;
 }

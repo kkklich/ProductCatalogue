@@ -1,10 +1,64 @@
+@use '../../../styles/variables' as vars;
+@use 'sass:color';
+
 .dialog-form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    margin-top: 10px;
+    gap: 16px;
+    margin-top: 16px;
 }
 
 .full-width {
     width: 100%;
+}
+
+h2[mat-dialog-title] {
+    font-weight: 800;
+    text-transform: uppercase;
+    color: vars.$me-black;
+    border-bottom: 3px solid vars.$me-yellow;
+    padding-bottom: 12px;
+    margin-bottom: 24px;
+    letter-spacing: 0.5px;
+}
+
+.dialog-actions {
+    padding-bottom: 16px;
+    padding-right: 16px;
+    gap: 12px;
+}
+
+.cancel-button {
+    color: vars.$me-black !important;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+
+    &:hover {
+        background-color: #ebebeb !important;
+    }
+}
+
+.save-button {
+    background-color: vars.$me-yellow !important;
+    color: vars.$me-black !important;
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 0 32px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s, transform 0.2s;
+
+    &:hover:not([disabled]) {
+        background-color: color.adjust(vars.$me-yellow, $lightness: -5%) !important;
+
+        transform: translateY(-1px);
+    }
+
+    &:disabled {
+        background-color: #e0e0e0 !important;
+        color: #999999 !important;
+        cursor: not-allowed;
+        transform: none;
+    }
 }

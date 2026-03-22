@@ -21,9 +21,10 @@
     </form>
 </mat-dialog-content>
 
-<mat-dialog-actions align="end">
-    <button mat-button type="button" (click)="closeModal()">Cancel</button>
-    <button mat-flat-button color="primary" type="submit" form="productForm" [disabled]="productForm.invalid">
+<mat-dialog-actions align="end" class="dialog-actions">
+    <button mat-button type="button" class="cancel-button" (click)="closeModal()">Cancel</button>
+
+    <button mat-flat-button type="submit" class="save-button" form="productForm" [disabled]="productForm.invalid">
         {{ isEditMode ? 'Update' : 'Save' }}
     </button>
 </mat-dialog-actions>

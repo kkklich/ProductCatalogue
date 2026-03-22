@@ -1,7 +1,8 @@
 @use '../../../styles/variables' as vars;
+@use 'sass:color';
 
 .dashboard-container {
-    padding: 24px;
+    padding: 30px 20px;
     max-width: 1200px;
     margin: 0 auto;
 }
@@ -16,35 +17,43 @@
 
     .search-field {
         width: 100%;
-        max-width: 450px;
+        max-width: 500px;
 
-        /* Slight adjustment to make Material form fields less tall */
         ::ng-deep .mat-mdc-text-field-wrapper {
-            background-color: white;
+            background-color: #ffffff;
+            border-radius: 4px;
         }
     }
 
     .add-button {
-        padding: 24px 24px;
-        border-radius: 8px;
-        font-weight: 500;
-        letter-spacing: 0.5px;
+        padding: 24px 32px;
+        font-size: 16px;
+        font-weight: 700;
+        text-transform: uppercase;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s;
 
-        box-shadow: 0 4px 12px rgba(vars.$primary-color, 0.3);
-        transition: transform 0.2s ease, box-shadow 0.2s ease;
+        background-color: vars.$me-yellow !important;
+        color: vars.$me-black !important;
+        cursor: pointer;
+
+        mat-icon {
+            margin-right: 8px;
+        }
 
         &:hover {
             transform: translateY(-2px);
-            box-shadow: 0 6px 16px rgba(vars.$primary-color, 0.4);
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            background-color: color.adjust(vars.$me-yellow, $lightness: -5%) !important;
         }
     }
 }
 
 .table-card {
-    background: white;
-    border-radius: 12px;
+    background: #ffffff;
+    border-radius: 4px;
     overflow: hidden;
-    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.08);
 
     .table-wrapper {
         overflow-x: auto;
@@ -55,33 +64,43 @@
     width: 100%;
 
     th {
+        background-color: vars.$me-black;
+        color: #ffffff;
         text-transform: uppercase;
-        font-size: 12px;
-        font-weight: 600;
-        color: #666;
-        background-color: #fafafa;
-        padding: 16px 24px;
-        letter-spacing: 0.5px;
+        font-size: 13px;
+        font-weight: 700;
+        padding: 18px 24px;
+        letter-spacing: 1px;
+
+        ::ng-deep .mat-sort-header-arrow {
+            color: vars.$me-yellow !important;
+        }
+
+        ::ng-deep .mat-sort-header-indicator {
+            color: vars.$me-yellow !important;
+        }
     }
 
     td {
         padding: 16px 24px;
-        color: #333;
-        font-size: 14px;
-        border-bottom: 1px solid #f0f0f0;
+        color: vars.$me-black;
+        font-size: 15px;
+        font-weight: 600;
+        border-bottom: 1px solid #e0e0e0;
     }
 
     .product-row {
         transition: background-color 0.2s ease;
 
         &:hover {
-            background-color: #fcfcfc;
+            background-color: #fafafa;
         }
     }
 
     .price-cell {
-        font-weight: 500;
-        color: vars.$primary-color;
+        font-size: 16px;
+        font-weight: 700;
+        color: vars.$me-red;
     }
 
     .actions-header,
@@ -90,41 +109,44 @@
     }
 
     .action-btn {
-        opacity: 0.7;
-        transition: opacity 0.2s, background-color 0.2s;
+        transition: all 0.2s;
 
-        &:hover {
-            opacity: 1;
+        &.edit-btn {
+            color: vars.$me-black;
+
+            &:hover {
+                background-color: vars.$me-yellow;
+            }
         }
 
-        &.edit-btn:hover {
-            color: vars.$primary-color;
-            background-color: rgba(vars.$primary-color, 0.1);
-        }
+        &.delete-btn {
+            color: #999;
 
-        &.delete-btn:hover {
-            color: vars.$danger-color;
-            background-color: rgba(vars.$danger-color, 0.1);
+            &:hover {
+                color: #fff;
+                background-color: vars.$me-red;
+            }
         }
     }
 }
 
 .empty-state {
     text-align: center;
-    padding: 60px 20px;
-    color: #888;
+    padding: 80px 20px;
+    color: vars.$me-black;
 
     .empty-icon {
-        font-size: 48px;
-        width: 48px;
-        height: 48px;
-        margin-bottom: 16px;
-        color: #ccc;
+        font-size: 64px;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 20px;
+        color: vars.$me-yellow;
     }
 
     p {
         margin: 0;
-        font-size: 16px;
+        font-size: 18px;
+        font-weight: 600;
     }
 }
 
@@ -139,6 +161,7 @@
 
         .add-button {
             width: 100%;
+            justify-content: center;
         }
     }
 }
