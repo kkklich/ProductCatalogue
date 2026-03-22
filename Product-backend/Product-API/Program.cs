@@ -1,5 +1,6 @@
 using Product_API.Interfaces;
 using Product_API.Mappings;
+using Product_API.Middlewares;
 using ProductCatalogApi.Repositories;
 using ProductCatalogApi.Services;
 
@@ -27,6 +28,8 @@ builder.Services.AddCors(options =>
 });
 
 var app = builder.Build();
+
+app.UseMiddleware<RequestLoggingMiddleware>();
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
