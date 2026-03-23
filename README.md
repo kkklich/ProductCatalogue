@@ -56,4 +56,7 @@ Before starting the Angular app, you must ensure it points to the correct backen
 1. Open the `product-app-frontend` folder in **VS Code**.
 2. run **npm i**
 3. run **npm run start**
+
+
+web url:  https://krzysztofklich.pl/products
   
