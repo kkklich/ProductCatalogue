@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:4200")
+                .WithOrigins("http://localhost:4200", "https://krzysztof.klich.pl")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
@@ -44,4 +44,9 @@ app.UseCors("AllowAngular");
 
 app.MapControllers();
 
-app.Run();
+//app.Run();
+
+
+var port = Environment.GetEnvironmentVariable("PORT") ?? "8080";
+
+app.Run($"http://0.0.0.0:{port}");
