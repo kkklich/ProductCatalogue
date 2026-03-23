@@ -20,7 +20,10 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:4200", "https://krzysztof.klich.pl")
+                .WithOrigins(
+                    "http://localhost:4200",
+                    "https://krzysztofklich.pl"
+                )
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
