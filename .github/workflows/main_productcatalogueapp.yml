@@ -28,7 +28,7 @@ jobs:
 
       # --- ADDED TEST STEP ---
       - name: Run xUnit Tests
-        run: dotnet test Product-backend/Products.Tests.csproj --configuration Release --no-build --verbosity normal
+        run: dotnet test Product-backend/Products.Tests --configuration Release --no-build --verbosity normal
 
       - name: dotnet publish
         run: dotnet publish Product-backend/Product-API/Product-API.csproj -c Release -o "${{env.DOTNET_ROOT}}/myapp"
