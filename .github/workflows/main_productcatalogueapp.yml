@@ -3,7 +3,7 @@ name: Build and deploy ASP.Net Core app to Azure Web App - ProductCatalogueApp
 on:
   push:
     branches:
-      - main
+      - azure
   workflow_dispatch:
 
 jobs:
