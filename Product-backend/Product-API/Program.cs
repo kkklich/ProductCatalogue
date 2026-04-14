@@ -20,7 +20,7 @@ builder.Services.AddCors(options =>
         policy =>
         {
             policy
-                .WithOrigins("http://localhost:4200", "https://krzysztofklich.pl")
+                .WithOrigins("http://localhost:4200", "https://krzysztofklich.pl", "https://calm-mushroom-00ccc290f.7.azurestaticapps.net")
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
