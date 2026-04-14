@@ -60,4 +60,4 @@ Before starting the Angular app, you must ensure it points to the correct backen
 
 web url:  https://krzysztofklich.pl/products
   
-azure url: https://calm-mushroom-00ccc290f.7.azurestaticapps.net
+azure url: https://nice-wave-09cbc3f0f.7.azurestaticapps.net
