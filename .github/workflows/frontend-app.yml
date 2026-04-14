@@ -31,17 +31,22 @@ jobs:
     - name: Build Angular Project
       run: npm run build -- --configuration production --base-href /products/
 
+    # --- CYPRESS STEPS ---
+    - name: Run Cypress Tests
+      uses: cypress-io/github-action@v6
+      with:
+        working-directory: product-app-frontend
+        start: npm start
+        wait-on: 'http://localhost:4200'
+    # ---------------------------
+
     - name: Deploy to Cyberfolks via FTP
       uses: SamKirkland/FTP-Deploy-Action@v4.3.4
       with:
         server: ${{ secrets.FTP_SERVER }}
         username: ${{ secrets.FTP_USERNAME }}
         password: ${{ secrets.FTP_PASSWORD }}
-
         protocol: ftps
-        
         dangerous-clean-slate: false
-        
         local-dir: ./product-app-frontend/dist/product-app/browser/ 
         server-dir: /sites/krzysztofklich.pl/public_html/products/
-        
